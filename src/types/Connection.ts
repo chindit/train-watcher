@@ -1,4 +1,4 @@
-type Connection = {
+export type Connection = {
     alerts: {
         number: number,
         alert: Array<String>,

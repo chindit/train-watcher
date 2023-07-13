@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {Connection} from "../types/Connection.ts";
+
 defineProps({
   connections: {
     type: Array<Connection>,
