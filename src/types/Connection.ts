@@ -6,7 +6,7 @@ export type Connection = {
     arrival: {
         arrived: Boolean,
         canceled: Boolean,
-        delay: number,
+        delay: string,
         direction: {
             name: String,
         },
@@ -18,8 +18,8 @@ export type Connection = {
         station: String,
         stationinfo: {
             id: String,
-            locationX: number,
-            locationY: number,
+            locationX: string,
+            locationY: string,
             name: String,
             standardname: String,
         },

@@ -28,7 +28,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" @click="addItinerary">Save changes</button>
+          <button type="button" class="btn btn-primary" @click="addItinerary" data-bs-dismiss="modal">Save changes</button>
         </div>
       </div>
     </div>
@@ -77,10 +77,12 @@ const addItinerary = () => {
 
 const findNearestFutureItinerary = (itineraries: Itinerary[]): Itinerary|null => {
   const now = new Date();
-  return itineraries.reduce((acc: Itinerary|null, itinerary: Itinerary): Itinerary|null => {
-    const itineraryTime = new Date(itinerary.time);
-    return itineraryTime > now ? itinerary : acc;
-  }, null);
+  return itineraries.reduce((closest: Itinerary, current: Itinerary): Itinerary => {
+    const closestTimeDiff = Math.abs(new Date(closest.time).getTime() - now.getTime());
+    const currentTimeDiff = Math.abs(new Date(current.time).getTime() - now.getTime());
+
+    return currentTimeDiff < closestTimeDiff ? current : closest;
+  });
 };
 </script>
 
