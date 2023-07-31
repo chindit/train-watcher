@@ -8,6 +8,10 @@ defineProps({
   }
 })
 
+const emit = defineEmits<{
+  (e:'save', value:Connection): void
+}>();
+
 const toTime = function(timestamp: number): String
 {
   return (new Date(timestamp*1000)).toLocaleTimeString();
@@ -42,7 +46,7 @@ const toDelay = (delay: number): number => {
         {{ toDelay(train.departure.delay) }} min
       </div>
       <div>
-        <button class="btn btn-link">
+        <button class="btn btn-link" @click="emit('save', train)">
           <i class="fa-regular fa-floppy-disk"></i>
         </button>
       </div>

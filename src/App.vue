@@ -1,9 +1,9 @@
 <template>
   <h1>Trains</h1>
   <itinerary-view v-for="itinerary in itineraries" :key="itinerary.id" :itinerary="itinerary" />
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#itineraryModal">Add new itinerary</button>
+  <button type="button" class="btn btn-primary mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#itineraryModal">Add new itinerary</button>
   <connection-view :connections="trains" />
-  <button @click="fetchStart">Refresh</button>
+  <button @click="fetchStart" class="mb-3">Refresh</button>
 
   <div class="modal fade" id="itineraryModal" tabindex="-1" aria-labelledby="itineraryModalTitle" aria-hidden="true">
     <div class="modal-dialog">
