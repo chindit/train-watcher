@@ -56,6 +56,7 @@ const template = {
 const fetchStart = async () => {
   const date = dayjs().date().toString().padStart(2, '0') + (dayjs().month() + 1).toString().padStart(2, '0') + dayjs().year().toString().slice(2, 4);
   const itinerary = findNearestFutureItinerary(itineraries.value);
+
   if (itinerary === null) {
     return;
   }
@@ -78,12 +79,14 @@ const addItinerary = () => {
 const findNearestFutureItinerary = (itineraries: Itinerary[]): Itinerary|null => {
   const now = new Date();
   return itineraries.reduce((closest: Itinerary, current: Itinerary): Itinerary => {
-    const closestTimeDiff = Math.abs(new Date(closest.time).getTime() - now.getTime());
-    const currentTimeDiff = Math.abs(new Date(current.time).getTime() - now.getTime());
+    const closestTimeDiff = Math.abs(new Date(`1970-01-01T${closest.time}:00`).getTime() - now.getTime());
+    const currentTimeDiff = Math.abs(new Date(`1970-01-01T${current.time}:00`).getTime() - now.getTime());
 
     return currentTimeDiff < closestTimeDiff ? current : closest;
   });
 };
+
+fetchStart();
 </script>
 
 <style scoped>
